@@ -1,0 +1,68 @@
+@startuml tables
+
+entity users {
+  +id [PK]
+  --
+  login_id
+  password
+  name
+  created_at
+  updated_at
+}
+
+entity articles {
+  +id [PK]
+  --
+  title
+  body
+  #author_id [FK]
+  created_at
+  updated_at
+}
+
+entity tags {
+  +id [PK]
+  --
+  name
+  created_at
+  updated_at
+}
+
+entity article_tags {
+  +id [PK]
+  --
+  #article_id [FK]
+  #tag_id [FK]
+  created_at
+  updated_at
+}
+
+entity comments {
+  +id [PK]
+  --
+  body
+  #author_id [FK]
+  #article_id [FK]
+  created_at
+  updated_at
+}
+
+entity favorites {
+  +id [PK]
+  --
+  #user_id [FK]
+  #article_id [FK]
+  created_at
+  updated_at
+}
+
+entity follows {
+  +id [PK]
+  --
+  #user_id [FK]
+  #followed_user_id [FK]
+  created_at
+  updated_at
+}
+
+@enduml

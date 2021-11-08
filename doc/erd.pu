@@ -1,0 +1,13 @@
+@startuml erd
+!include tables.pu
+
+users -d-o{ articles
+users -l-o{ comments
+users -o{ favorites
+users -o{ follows
+articles -d-o{ article_tags
+articles -o{ comments
+articles -o{ favorites
+article_tags }o- tags
+
+@enduml
