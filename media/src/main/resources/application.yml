@@ -1,2 +1,32 @@
-greeting:
-  message: "hello"
+quarkus:
+  datasource:
+    devservices:
+      image-name: postgres:13.3
+      port: 5433
+  hibernate-orm:
+    database:
+      generation: drop-and-create
+    log:
+      sql: true
+    jdbc:
+      timezone: Asia/Tokyo
+  resteasy:
+    path: /api/media
+
+"%prod":
+  quarkus:
+    datasource:
+      db-kind: postgresql
+      jdbc:
+        url: jdbc:postgresql://${db-host}:5432/${db-name}
+      username: ${db-user}
+      password: ${db-pass}
+    hibernate-orm:
+      database:
+        generation: drop-and-create
+
+"%test":
+  quarkus:
+    datasource:
+      devservices:
+        port: 5434
