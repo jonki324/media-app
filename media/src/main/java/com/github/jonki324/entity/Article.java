@@ -1,8 +1,10 @@
 package com.github.jonki324.entity;
 
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -19,13 +21,13 @@ public class Article extends BaseEntity {
   @Column(name = "author_id")
   public Long authorId;
 
-  @OneToMany(mappedBy = "article")
-  public Set<Comment> comments;
+  @OneToMany(mappedBy = "article", fetch = FetchType.EAGER)
+  public Set<Comment> comments = new HashSet<>();
 
-  @OneToMany(mappedBy = "article")
-  public Set<ArticleTag> articleTags;
+  @OneToMany(mappedBy = "article", fetch = FetchType.EAGER)
+  public Set<ArticleTag> articleTags = new HashSet<>();
 
-  @OneToMany(mappedBy = "article")
-  public Set<Favorite> favorites;
+  @OneToMany(mappedBy = "article", fetch = FetchType.EAGER)
+  public Set<Favorite> favorites = new HashSet<>();
 
 }
