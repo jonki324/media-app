@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "comments")
@@ -15,6 +16,9 @@ public class Comment extends BaseEntity {
 
   @Column(name = "author_id")
   public Long authorId;
+
+  @Transient
+  public Long articleId;
 
   @ManyToOne
   @JoinColumn(name = "article_id", nullable = false)
