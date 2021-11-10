@@ -90,3 +90,7 @@ insert into articles
 insert into follows
 (user_id, followed_user_id, created_at, updated_at, version) values
 (1, 2, current_timestamp, current_timestamp, 0);
+
+insert into favorites
+(user_id, article_id, created_at, updated_at, version) values
+(2, 1, current_timestamp, current_timestamp, 0);

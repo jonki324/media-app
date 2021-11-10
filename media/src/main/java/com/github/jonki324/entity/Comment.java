@@ -1,5 +1,6 @@
 package com.github.jonki324.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -20,6 +21,7 @@ public class Comment extends BaseEntity {
   @Transient
   public Long articleId;
 
+  @JsonIgnore
   @ManyToOne
   @JoinColumn(name = "article_id", nullable = false)
   public Article article;
