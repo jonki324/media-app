@@ -17,7 +17,10 @@ public class ArticleService {
 
   public Article getById(Long id) {
     Optional<Article> optionalArticle = Article.findByIdOptional(id);
-    return optionalArticle.orElseThrow(() -> new WebApplicationException(Status.NOT_FOUND));
+    var article = optionalArticle.orElseThrow(() -> new WebApplicationException(Status.NOT_FOUND));
+    article.articleTags.forEach(articleTag -> article.tags.add(articleTag.tag));
+    article.favoriteCount = article.favorites.size();
+    return article;
   }
 
   @Transactional

@@ -27,7 +27,7 @@ public class CommentResourceTest {
     var json = Map.of("body", "body1", "authorId", "1", "articleId", "1");
     RestAssured.given().contentType(ContentType.JSON).body(json).when().post("/api/media/comments")
         .then().statusCode(200).body("id",
-            CoreMatchers.is(1));
+            CoreMatchers.notNullValue());
   }
 
 }

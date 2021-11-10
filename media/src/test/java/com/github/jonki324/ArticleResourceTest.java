@@ -33,26 +33,35 @@ public class ArticleResourceTest {
   public void testGetById() {
     RestAssured.given().contentType(ContentType.JSON).when().get("/api/media/articles/2").then()
         .statusCode(200).body("id", CoreMatchers.is(2));
+
+    RestAssured.given().contentType(ContentType.JSON).when().get("/api/media/articles/1").then()
+        .statusCode(200).body("id", CoreMatchers.is(1)).body("favoriteCount", CoreMatchers.is(1))
+        .body("comments.size()", CoreMatchers.is(1)).body("tags.size()", CoreMatchers.is(2));
   }
 
   @Test
   public void testCreate() {
     var json = Map.of("title", "title4", "body", "body4", "authorId", "1");
-    RestAssured.given().contentType(ContentType.JSON).body(json).when().post("/api/media/articles").then()
+    RestAssured.given().contentType(ContentType.JSON).body(json).when().post("/api/media/articles")
+        .then()
         .statusCode(200).body("id", CoreMatchers.is(4));
   }
 
   @Test
   public void testUpdate() {
-    var json = Map.of("id", "2", "title", "title2 update", "body", "body2 update", "authorId", "1", "version", "0");
-    RestAssured.given().contentType(ContentType.JSON).body(json).when().put("/api/media/articles/2").then()
+    var json = Map.of("id", "2", "title", "title2 update", "body", "body2 update", "authorId", "1",
+        "version", "0");
+    RestAssured.given().contentType(ContentType.JSON).body(json).when().put("/api/media/articles/2")
+        .then()
         .statusCode(200).body("title", CoreMatchers.equalTo("title2 update"));
   }
 
   @Test
   public void testDelete() {
-    var json = Map.of("id", "2", "title", "title2", "body", "body2", "authorId", "1", "version", "0");
-    RestAssured.given().contentType(ContentType.JSON).body(json).when().delete("/api/media/articles/2")
+    var json = Map.of("id", "2", "title", "title2", "body", "body2", "authorId", "1", "version",
+        "0");
+    RestAssured.given().contentType(ContentType.JSON).body(json).when()
+        .delete("/api/media/articles/2")
         .then()
         .statusCode(204);
   }

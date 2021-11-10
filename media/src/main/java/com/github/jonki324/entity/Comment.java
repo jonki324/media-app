@@ -23,7 +23,7 @@ public class Comment extends BaseEntity {
 
   @JsonIgnore
   @ManyToOne
-  @JoinColumn(name = "article_id", nullable = false)
+  @JoinColumn(name = "article_id")
   public Article article;
 
 }

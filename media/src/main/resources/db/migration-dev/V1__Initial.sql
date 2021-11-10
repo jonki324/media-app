@@ -106,3 +106,7 @@ insert into article_tags
 (1, 1, current_timestamp, current_timestamp, 0),
 (1, 2, current_timestamp, current_timestamp, 0),
 (2, 3, current_timestamp, current_timestamp, 0);
+
+insert into comments
+(body, author_id, article_id, created_at, updated_at, version) values
+('comment1', 2, 1, current_timestamp, current_timestamp, 0);
