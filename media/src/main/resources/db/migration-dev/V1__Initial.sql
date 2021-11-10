@@ -86,3 +86,7 @@ insert into articles
 ('title1', 'body1', 1, current_timestamp, current_timestamp, 0),
 ('title2', 'body2', 1, current_timestamp, current_timestamp, 0),
 ('title3', 'body3', 1, current_timestamp, current_timestamp, 0);
+
+insert into follows
+(user_id, followed_user_id, created_at, updated_at, version) values
+(1, 2, current_timestamp, current_timestamp, 0);
