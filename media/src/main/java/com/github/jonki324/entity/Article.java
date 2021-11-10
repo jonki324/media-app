@@ -1,7 +1,9 @@
 package com.github.jonki324.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,7 +26,8 @@ public class Article extends BaseEntity {
   @OneToMany(mappedBy = "article", fetch = FetchType.EAGER)
   public Set<Comment> comments = new HashSet<>();
 
-  @OneToMany(mappedBy = "article", fetch = FetchType.EAGER)
+  @JsonIgnore
+  @OneToMany(mappedBy = "article", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   public Set<ArticleTag> articleTags = new HashSet<>();
 
   @OneToMany(mappedBy = "article", fetch = FetchType.EAGER)

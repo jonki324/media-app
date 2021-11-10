@@ -94,3 +94,15 @@ insert into follows
 insert into favorites
 (user_id, article_id, created_at, updated_at, version) values
 (2, 1, current_timestamp, current_timestamp, 0);
+
+insert into tags
+(name, created_at, updated_at, version) values
+('tag11', current_timestamp, current_timestamp, 0),
+('tag12', current_timestamp, current_timestamp, 0),
+('tag21', current_timestamp, current_timestamp, 0);
+
+insert into article_tags
+(article_id, tag_id, created_at, updated_at, version) values
+(1, 1, current_timestamp, current_timestamp, 0),
+(1, 2, current_timestamp, current_timestamp, 0),
+(2, 3, current_timestamp, current_timestamp, 0);
