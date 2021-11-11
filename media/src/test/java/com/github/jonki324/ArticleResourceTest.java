@@ -3,6 +3,7 @@ package com.github.jonki324;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
 import org.flywaydb.core.Flyway;
@@ -45,6 +46,17 @@ public class ArticleResourceTest {
     RestAssured.given().contentType(ContentType.JSON).body(json).when().post("/api/media/articles")
         .then()
         .statusCode(200).body("id", CoreMatchers.is(4));
+
+    var tag1 = Map.of("name", "tag14");
+    var tag2 = Map.of("id", "1", "name", "tag11", "version", "0");
+    var json2 = Map.of("title", "title5", "body", "body5", "authorId", "1", "tags", List.of(tag1, tag2));
+    RestAssured.given().contentType(ContentType.JSON).body(json2).when().post("/api/media/articles")
+        .then()
+        .statusCode(200).body("id", CoreMatchers.notNullValue())
+        .body("tags[0].id", CoreMatchers.notNullValue());
+
+    RestAssured.given().contentType(ContentType.JSON).when().get("/api/media/articles/5").then()
+        .statusCode(200).body("tags.size()", CoreMatchers.is(2));
   }
 
   @Test

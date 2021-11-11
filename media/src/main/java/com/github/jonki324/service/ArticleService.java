@@ -1,8 +1,12 @@
 package com.github.jonki324.service;
 
 import com.github.jonki324.entity.Article;
+import com.github.jonki324.entity.ArticleTag;
+import com.github.jonki324.entity.Tag;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import javax.enterprise.context.RequestScoped;
 import javax.transaction.Transactional;
 import javax.ws.rs.WebApplicationException;
@@ -25,7 +29,18 @@ public class ArticleService {
 
   @Transactional
   public Article create(Article article) {
-    article.persistAndFlush();
+    var newTags = article.tags.stream().filter(tag -> Objects.isNull(tag.id))
+        .collect(Collectors.toList());
+    if (newTags.size() > 0) {
+      Tag.persist(newTags);
+    }
+    article.persist();
+    article.tags.forEach(tag -> {
+      var articleTag = new ArticleTag();
+      articleTag.article = article;
+      articleTag.tag = tag;
+      articleTag.persist();
+    });
     return article;
   }
 
