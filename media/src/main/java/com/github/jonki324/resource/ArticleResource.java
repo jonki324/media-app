@@ -43,7 +43,8 @@ public class ArticleResource {
   @Path("/{id}")
   @PUT
   public Article update(@PathParam("id") Long id, Article article) {
-    return articleService.update(id, article);
+    articleService.update(id, article);
+    return articleService.getById(id);
   }
 
   @Path("/{id}")
