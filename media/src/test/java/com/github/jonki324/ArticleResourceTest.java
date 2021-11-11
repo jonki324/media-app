@@ -70,9 +70,11 @@ public class ArticleResourceTest {
 
     var tag1 = Map.of("name", "tag24");
     var tag2 = Map.of("id", "3", "name", "tag21", "version", "0");
-    var json2 = Map.of("id", "2", "title", "title2 update2", "body", "body2 update2", "authorId", "1",
+    var json2 = Map.of("id", "2", "title", "title2 update2", "body", "body2 update2", "authorId",
+        "1",
         "version", "0", "tags", List.of(tag1, tag2));
-    RestAssured.given().contentType(ContentType.JSON).body(json2).when().put("/api/media/articles/2")
+    RestAssured.given().contentType(ContentType.JSON).body(json2).when()
+        .put("/api/media/articles/2")
         .then()
         .statusCode(200).body("tags[0].id", CoreMatchers.notNullValue())
         .body("tags[1].id", CoreMatchers.notNullValue());
@@ -89,6 +91,16 @@ public class ArticleResourceTest {
         .delete("/api/media/articles/2")
         .then()
         .statusCode(204);
+
+    var json2 = Map.of("id", "1", "title", "title1", "body", "body1", "authorId", "1", "version",
+        "0");
+    RestAssured.given().contentType(ContentType.JSON).body(json2).when()
+        .delete("/api/media/articles/1")
+        .then()
+        .statusCode(204);
+
+    RestAssured.given().contentType(ContentType.JSON).when().get("/api/media/articles/1").then()
+        .statusCode(404);
   }
 
 }

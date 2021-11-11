@@ -26,7 +26,7 @@ public class Article extends BaseEntity {
   @Column(name = "author_id")
   public Long authorId;
 
-  @OneToMany(mappedBy = "article", fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "article", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   public Set<Comment> comments = new HashSet<>();
 
   @JsonIgnore
@@ -36,7 +36,7 @@ public class Article extends BaseEntity {
   @Transient
   public List<Tag> tags = new ArrayList<>();
 
-  @OneToMany(mappedBy = "article", fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "article", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   public Set<Favorite> favorites = new HashSet<>();
 
   @Transient
