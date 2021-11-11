@@ -31,6 +31,8 @@ quarkus:
           create-target: ddl.sql
     flyway:
       locations: db/migration-dev
+    smallrye-openapi:
+      operation-id-strategy: class-method
 
 "%test":
   quarkus:
