@@ -1,0 +1,16 @@
+version: "3"
+services:
+  db:
+    image: mongo:4.4
+    container_name: db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${DEFAULT_DB_USER:-dbuser}
+      MONGO_INITDB_ROOT_PASSWORD: ${DEFAULT_DB_PASSWORD:-dbpass}
+      TZ: Asia/Tokyo
+    ports:
+      - "${LOCAL_DB_PORT:-27017}:${DEFAULT_DB_PORT:-27017}"
+    volumes:
+      - database:/data/db
+volumes:
+  database:
+    driver: local

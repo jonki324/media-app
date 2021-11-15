@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
-    "rest_framework.authtoken",
     "djoser",
     "users.apps.UsersConfig",
 ]
@@ -85,8 +84,14 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "djongo",
+        "NAME": env("DEFAULT_DB_NAME"),
+        "CLIENT": {
+            "host": env("DEFAULT_DB_HOST"),
+            "port": int(env("DEFAULT_DB_PORT")),
+            "username": env("DEFAULT_DB_USER"),
+            "password": env("DEFAULT_DB_PASSWORD"),
+        },
     }
 }
 
@@ -141,6 +146,11 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    "AUTH_HEADER_TYPES": ("JWT",),
+    "AUTH_HEADER_TYPES": (
+        "Bearer",
+        "JWT",
+    ),
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
 }
+
+AUTH_USER_MODEL = "users.User"
