@@ -1,5 +1,6 @@
 import React from 'react';
-import { Card, CardContent, Grid, Button, TextField } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
+import { Card, CardContent, Grid, Button, TextField, Link } from '@mui/material';
 import { AccountCircleTwoTone } from '@mui/icons-material';
 import Layout from '../../components/Layout/Layout';
 
@@ -30,6 +31,11 @@ const LoginPage: React.FC = () => {
                   <Button variant="contained" fullWidth>
                     LOGIN
                   </Button>
+                </Grid>
+                <Grid item xs={12} textAlign="center">
+                  <Link component={RouterLink} to="/signup" underline="none">
+                    Sign UP Now
+                  </Link>
                 </Grid>
               </Grid>
             </CardContent>
