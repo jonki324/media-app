@@ -1,4 +1,6 @@
 import React from 'react';
+import './Layout.css';
+import { Container } from '@mui/material';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 
@@ -12,7 +14,11 @@ const Layout: React.FC<Props> = ({ children }: Props) => {
       <header>
         <Header />
       </header>
-      <main>{children}</main>
+      <main>
+        <Container maxWidth="xl" sx={{ height: '100%' }}>
+          {children}
+        </Container>
+      </main>
       <footer>
         <Footer />
       </footer>

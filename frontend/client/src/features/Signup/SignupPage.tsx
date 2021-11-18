@@ -1,7 +1,8 @@
 import React from 'react';
+import Layout from '../../components/Layout/Layout';
 
 const SignupPage: React.FC = () => {
-  return <div>Signup Page</div>;
+  return <Layout>Signup Page</Layout>;
 };
 
 export default SignupPage;

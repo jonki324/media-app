@@ -1,7 +1,8 @@
 import React from 'react';
+import Layout from '../../components/Layout/Layout';
 
 const ArticlePage: React.FC = () => {
-  return <div>Article Page</div>;
+  return <Layout>Article Page</Layout>;
 };
 
 export default ArticlePage;

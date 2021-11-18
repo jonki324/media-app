@@ -1,7 +1,8 @@
 import React from 'react';
+import Layout from '../../components/Layout/Layout';
 
 const SettingPage: React.FC = () => {
-  return <div>Setting Page</div>;
+  return <Layout>Setting Page</Layout>;
 };
 
 export default SettingPage;
