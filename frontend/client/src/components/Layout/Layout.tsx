@@ -15,7 +15,7 @@ const Layout: React.FC<Props> = ({ children }: Props) => {
         <Header />
       </header>
       <main>
-        <Container maxWidth="xl" sx={{ height: '100%' }}>
+        <Container maxWidth="lg" sx={{ height: '100%' }}>
           {children}
         </Container>
       </main>
